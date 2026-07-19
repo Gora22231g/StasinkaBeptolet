@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Игра с чатом Ютуба</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { width: 100%; height: 100%; font-family: sans-serif; overflow: hidden; }
+        .container { display: flex; width: 100%; height: 100%; }
+        
+        /* Зона для твоей игры */
+        .game-area { 
+            flex-grow: 1; 
+            background-color: #1a1a1a; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            color: white; 
+            font-size: 24px;
+        }
+        
+        /* Боковая панель чата как на Твиче */
+        .chat-sidebar { 
+            width: 340px; 
+            height: 100%; 
+            display: flex; 
+            flex-direction: column; 
+            background-color: #18181b; 
+            border-left: 1px solid #2f2f35; 
+        }
+        .chat-header { 
+            padding: 15px; 
+            color: #efeff1; 
+            font-weight: bold; 
+            text-align: center; 
+            border-bottom: 1px solid #2f2f35; 
+            font-size: 14px; 
+        }
+        .youtube-chat-frame { width: 100%; flex-grow: 1; border: none; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Слева твоя игра -->
+        <main class="game-area">
+            <div>Твоя игра будет здесь</div>
+        </main>
+
+        <!-- Справа чат YouTube -->
+        <aside class="chat-sidebar">
+            <div class="chat-header">Чат стрима</div>
+            <!-- Ссылка уже настроена под твой аккаунт и стрим друга -->
+            <iframe src="https://www.youtube.com/live_chat?v=Gk2Ol5IY6mc&embed_domain=gora22231g.github.io" class="youtube-chat-frame"></iframe>
+        </aside>
+    </div>
+
+</body>
+</html>
