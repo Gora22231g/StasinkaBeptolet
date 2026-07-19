@@ -19,7 +19,7 @@
             font-size: 24px;
         }
         
-        /* Боковая панель чата как на Твиче */
+        /* Боковая панель чата в стиле Twitch */
         .chat-sidebar { 
             width: 340px; 
             height: 100%; 
@@ -27,7 +27,10 @@
             flex-direction: column; 
             background-color: #18181b; 
             border-left: 1px solid #2f2f35; 
+            position: relative;
         }
+
+        /* Наша кастомная шапка */
         .chat-header { 
             padding: 15px; 
             color: #efeff1; 
@@ -35,8 +38,27 @@
             text-align: center; 
             border-bottom: 1px solid #2f2f35; 
             font-size: 14px; 
+            background-color: #18181b;
+            z-index: 10; /* Чтобы перекрывать скрытую шапку ютуба */
         }
-        .youtube-chat-frame { width: 100%; flex-grow: 1; border: none; }
+
+        /* Контейнер-маска, который прячет лишние элементы YouTube */
+        .chat-wrapper {
+            width: 100%;
+            flex-grow: 1;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Сам iframe сдвигаем вверх на 50 пикселей, чтобы скрыть стандартную шапку YouTube */
+        .youtube-chat-frame { 
+            position: absolute;
+            top: -50px; 
+            left: 0;
+            width: 100%; 
+            height: calc(100% + 50px); 
+            border: none; 
+        }
     </style>
 </head>
 <body>
@@ -47,11 +69,18 @@
             <div>Твоя игра будет здесь</div>
         </main>
 
-        <!-- Справа чат YouTube -->
+        <!-- Справа кастомный чат -->
         <aside class="chat-sidebar">
-            <div class="chat-header">Чат стрима</div>
-            <!-- Ссылка уже настроена под твой аккаунт и стрим друга -->
-            <iframe src="https://www.youtube.com/live_chat?v=Gk2Ol5IY6mc&embed_domain=gora22231g.github.io" class="youtube-chat-frame"></iframe>
+            <div class="chat-header">ЧАТ ТРАНСЛЯЦИИ</div>
+            
+            <div class="chat-wrapper">
+                <!-- Встроенная защита sandbox блокирует переходы на ютуб при нажатиях -->
+                <iframe 
+                    src="https://www.youtube.com/live_chat?v=Gk2Ol5IY6mc&embed_domain=gora22231g.github.io" 
+                    class="youtube-chat-frame"
+                    sandbox="allow-scripts allow-same-origin allow-forms">
+                </iframe>
+            </div>
         </aside>
     </div>
 
